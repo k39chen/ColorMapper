@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Color Mapper</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="lib/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" />
+    <link href="lib/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="header">
+        <h1>Color Mapper</h1>
+
+        <p class="intro">
+            This tool takes as inputs a list of <b>Match Candidates</b> and <b>Input Values</b>
+            which will result in the set of appropriate color mappings. This will be used
+            to determine how to take an arbitrary set of color values and have them conform
+            to a finite set of colors. The closeness of the colors is determined by computing the Euclidean distance
+            of each RGB value in the <b>Match Candidates</b> for a specific <b>Input Value</b>.
+            The sorting is determined by sorting based on the luminosity of each
+            RGB-value.
+        </p>
+    </div>
+    <div class="input-group-container">
+        <div class="input-group">
+            <h2>Match Candidates</h2>
+
+            <p>
+                Here, you will need to specify the set of colors that we will
+                consider as match candidates. This means, that whatever is
+                specified in <b>Input Values</b> will need be matched to one
+                of the values specified here. A sample row of input will look something like:
+                <span class="code inline">Sea Buckthorn:#f89728</span> or <span class="code inline">#f89728</span>.
+                The portion of the input is optional, though it will be left
+                blank in the table results.
+            </p>
+            <p>
+                Upon changing this input, the results will be populated below.
+                Both <b>Match Candidates</b> and <b>Input Values</b> need to be
+                completed before producing a result.
+            </p>
+
+            <textarea id="match-candidates">
+Sea Buckthorn:#f89728
+Silver Chalice:#999999
+Picton Blue:#329aea
+Tequila:#feedd6
+Texas Rose:#ffa84d
+Ecstasy:#f5871e
+Tango:#e46f15
+Dove Gray:#595959
+Gray:#828282
+Silver Chalice-1:#b2b2b2
+Gallery:#eaeaea
+Concrete:#f2f2f2
+Alabaster:#fafafa
+White:#ffffff
+Spindle:#e5f1f7
+Shakespeare:#52b3d9
+Mariner:#3281db
+Mariner-1:#3278C8
+Cinderella:#fce6e1
+Burnt Sienna:#ef8166
+Harp:#e2f1e6
+De York:#6eba83
+Gin Fizz:#fff8e0
+Dandelion:#ffda63
+            </textarea>
+        </div>
+        <div class="input-group">
+            <h2>Input Values</h2>
+
+            <p>
+                Similarly to <b>Match Candidates</b>, you will need to provide
+                a list of properly formatted color inputs. These will be an
+                arbitrary set of values that will be matched to one of the
+                specified match candidates. The same formatting rules as
+                <b>Match Candidates</b> needs to be enforced, however, the name
+                can be excluded since it will not be displayed in the results.
+            </p>
+            <p>
+                Upon changing this input, the results will be populated below.
+                Both <b>Match Candidates</b> and <b>Input Values</b> need to be
+                completed before producing a result.
+            </p>
+
+            <textarea id="input-values">
+#b2b2b2
+#999999
+#ffda63
+#ffe388
+#878787
+#52B3D9
+#FD940B
+#FEC74F
+#F79015
+#5CB16F
+#EC6C50
+#ef8166
+#fff
+#ccc
+#69747e
+#3a97c4
+#BCC9D2
+#e5f1f7
+#EFEFEF
+#FFFFFF
+#FAFAFA
+#595959
+#FFF
+#CCC
+#ff0
+#000
+#eee
+#999
+#eaeaea
+#F2F2F2
+#5A7E96
+#cbcbcb
+#E0E0E0
+#b3b3b3
+#dbdbdb
+#f2f2f2
+#808080
+#a7a7a7
+#d9d9d9
+#e3e3e3
+#FF0000
+#c1c1c1
+#f89728
+#f8972b
+#E2E2E2
+#828282
+#DFDFDF
+#94b1c7
+#e4eff5
+#D7D7D7
+#329AEA
+#CBCBCB
+#d7d7d7
+#E5F1F7
+#B2B2B2
+#C2C2C2
+#329aea
+#e2e2e2
+#3278c8
+#F8F8F8
+#E4E4E4
+#e9e9e9
+#EAEAEA
+#1C9916
+#EF8166
+#E8FFFF
+#fafafa
+#3A97C4
+rgba(50, 50, 50, 0.35)
+#777
+#CBD4E0
+#69747E
+#F8972B
+#fe9728
+#e46f15
+#6eba83
+#4a7c58
+#52b3d9
+#30a89b
+#1a656c
+#4d4d4d
+rgba(0,0,0,0.2)
+#f4f4f4
+#d2d2d2
+#0078A8
+#f1f1f1
+#ddd
+rgba(0, 0, 0, .15)
+#aaa
+#eeeeee
+#ffffff
+#cccccc
+#575757
+#D8D8D8
+#f3f3f3
+#add
+#ffc
+#E9E9E9
+#80cb80
+#5a925a
+#f28165
+#d04e2e
+#f0f0f0
+#b87426
+#f1f2f4
+#EEEEEE
+#177DF0
+#def
+rgba(255, 255, 255, 0.41)
+#fce6e1
+#bebebe
+#B6B6B6
+#CFCFCF
+#f7962b
+#b1b1b1
+#ffffcc
+#ebf1f4
+rgba(119, 119, 119, 0.5)
+rgba(0,0,0,0.1)
+#777777
+#A19896
+rgb(218, 218, 218)
+#ECECEC
+#aeaeae
+#ffedbd
+rgb(224, 224, 224)
+#94B1C7
+#aff
+#737d87
+#EEE
+#6fba83
+#E5E5E5
+#6eb882
+#FBF7DB
+#f9f9f9
+#ececec
+#FFD3A2
+#F1B271
+#FA8C2F
+#E0680E
+#C06D11
+#944411
+#C17721
+#f5871e
+rgb(105,116,126)
+#ffa84d
+#A05F14
+#f8f8f8
+rgba(0,0,0,0.34)
+#e8e8e8
+#e4e4e4
+rgba(50,50,50,0.35)
+#d3d6da
+#E8F0F6
+#f3f7f9
+#f7f7f7
+#9a9a9a
+#96B9E1
+#b94a48
+#4E4E4E
+#CECECE
+#989898
+rgba(0,0,0,0.5)
+#8A8A8A
+#616161
+#bababa
+#8E8E8E
+#F1F1F1
+#4ea1ca
+#F9F9F9
+#DBDBDB
+#75cff0
+#f2ede7
+#DDDDDD
+#c06d11
+#333
+rgb(102,101,101)
+#666565
+#e5e5e5
+#DDD
+#DEDEDE
+#4084B8
+#3281DB
+#4D4D4D
+#BABABA
+#F7962B
+#B87426
+#B06B1E
+#B45B22
+#EBF1F4
+#CCCCCC
+#485561
+#D4DCE0
+#CDD7DE
+#FFFFCC
+#FFEDBD
+#F2E5D6
+#333333
+#FFFF99
+#F6F6F6
+#F7F9FA
+#EEF4F7
+rgb(153, 153, 153)
+rgb(90,126,150)
+#F89728
+#B1C9DC
+#6EBA83
+#FEEDD6
+#FFA043
+#FF8406
+#E46F15
+#9DCFF5
+#3278C8
+#FCE6E1
+#E2F1E6
+#FFDA63
+#FFF8E0
+rgba(0,0,0,0.3)
+#646464
+#d4d4d4
+#969696
+#3bd53b
+#cbd4e0
+#7C7B7B
+#ffdddd
+#FCF8E3
+#C09853
+rgba(255, 255, 255, 0.5)
+rgba(0, 0, 0, 0.35)
+#DCDCDC
+#FBFBFB
+#ADADAD
+#AEAEAE
+#FFF7E3
+rgb(233, 233, 233)
+#e4e315
+rgb(143, 143, 143)
+#d0d0d0
+#606060
+#D0D0D0
+#CACACA
+#ababab
+#fff0c3
+#F3F3F3
+#757575
+#e68e28
+#4390af
+#c2c2c2
+rgba(186,186,186,1)
+#cacaca
+#E6E6E6
+#BBBBBB
+#dcdcdc
+rgba(0,0,0,.25)
+#8DC9F4
+#F5F5F5
+#F00
+#fea
+#EDEDED
+#D1D1D1
+rgba(0, 0, 0, 0.2)
+#BBB
+#0081C2
+#EE7E62
+rgba(255,0,0,0.0)
+#D9D9D9
+#565656
+rgb(255, 255, 255)
+#f5f5f5
+#e6e6e6
+#bfbfbf
+rgba(0, 0, 0, 0.1)
+rgba(0, 0, 0, 0.25)
+#000000
+#0081c2
+#0088cc
+#0077b3
+#C7E8F8
+rgba(255,255,255,0.8)
+#9FC3DE
+#d1d1d1
+#fff8e0
+#e2f1e6
+rgba(0,0,0,0.10)
+#e2e7ec
+#FFB065
+#4b4b4b
+#E8E8E8
+#D6D6D6
+#D4D4D4
+#F7D085
+#B9B9B9
+#65cb98
+#ff8066
+#C5C5C5
+#555
+rgba(0, 0, 0, 0.21)
+#656565
+#a2a2a2
+#149bdf
+            </textarea>
+        </div>
+    </div>
+
+    <div class="result-container-group">
+        <div class="filters">
+            <button id="toggle-match-candidates-btn">Toggle Match Candidates</button>
+            <button id="export-btn">Export Flagged Rows</button>
+            <div class="filter-group pull-right">
+                <label for="show-color-as">Show Colors As:</label>
+                <select name="show-color-as">
+                    <option value="rgb-hex" selected>RGB (Hex)</option>
+                    <option value="rgb-int">RGB (Integers)</option>
+                    <option value="hsv">HSV</option>
+                </select>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="result-container">
+            <div class="result-stats">
+                <span class="result-chart">
+                    <span style="width:100%;background-color:#ddd"></span>
+                </span>
+                <span class="result-stat" data-type="total">
+                    <span class="label">Total:</span>
+                    <span class="value"></span>
+                </span>
+            </div>
+            <table id="match-candidates-results">
+                <thead>
+                    <td>Name</td>
+                    <td>Color</td>
+                    <td>Preview</td>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="result-container">
+            <div class="result-stats">
+                <span class="result-chart"></span>
+                <span class="result-stat" data-type="total">
+                    <span class="label">Total:</span>
+                    <span class="value"></span>
+                </span>
+                <span class="result-stat" data-type="match-100">
+                    <span class="label"><span class="match-indicator" style="background-color:#6eba83"></span> = 100%:</span>
+                    <span class="value"></span>
+                </span>
+                <span class="result-stat" data-type="match-90">
+                    <span class="label"><span class="match-indicator" style="background-color:#86d099"></span> &gt; 90%:</span>
+                    <span class="value"></span>
+                </span>
+                <span class="result-stat" data-type="match-80">
+                    <span class="label"><span class="match-indicator" style="background-color:#ffa84d"></span> &gt; 80%:</span>
+                    <span class="value"></span>
+                </span>
+                <span class="result-stat" data-type="match-less-80">
+                    <span class="label"><span class="match-indicator" style="background-color:#ef8166"></span> &lt; 80%:</span>
+                    <span class="value"></span>
+                </span>
+                <span class="result-stat" data-type="match-unmatched">
+                    <span class="label"><span class="match-indicator" style="background-color:#828282"></span> Unmatched:</span>
+                    <span class="value"></span>
+                </span>
+            </div>
+            <table id="similar-matches-results">
+                <thead>
+                    <td>Input Color</td>
+                    <td class="labeled-cell separator">Input Preview</td>
+                    <td>Match %</td>
+                    <td>Similar Name</td>
+                    <td>Similar Color</td>
+                    <td>Similar Preview</td>
+                    <td>Flag</td>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="export-dialog">
+        <textarea id="export-value" placeholder="No flagged rows to export."></textarea>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+* {
+    color: #595959;
+}
+html {
+    padding-bottom: 64px;
+    font-size: 14px;
+    font-family: Arial;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+h2 {
+    margin: 0;
+    padding-bottom: 0.25em;
+    font-size: 18px;
+    border-bottom: solid 2px #d7d7d7;
+}
+p {
+    line-height: 1.5em;
+}
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+button {
+    transition: background-color 0.2s;
+    cursor: pointer;
+    background: #fafafa;
+    border: solid 1px #b2b2b2;
+    border-radius: 3px;
+    padding: 0.35em 0.7em;
+    outline: none;
+    font-size: 14px;
+}
+button:hover {
+    background: #eee;
+}
+button:active {
+    background: #e2e2e2;
+}
+select {
+    font-size: 14px;
+}
+textarea {
+    padding: 8px;
+    border: solid 1px #ddd;
+    border-radius: 3px;
+    font-family: "Ubuntu Mono", "Courier New", sans-serif !important;
+    font-size: 14px;
+}
+#header {
+    overflow: hidden;
+    margin-bottom: 2.0em;
+    padding: 2.0em 4.0em;
+    background: #aaa;
+    border-bottom: solid 8px #777;
+}
+#header > h1 {
+    float: left;
+    font-weight: normal;
+    color: #fafafa;
+    font-family: "Slabo 27px", serif;
+    font-size: 4.0em
+}
+#header > p.intro {
+    float: right;
+    width: 50%;
+    font-size: 16px;
+    text-align: right;
+    color: #eee;
+}
+#header > p.intro > b {
+    font-size: 16px;
+    color: #eee;
+}
+span.code {
+    margin: 0;
+    padding: 2px 6px;
+    background: #fafafa;
+    border: solid 1px #d7d7d7;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: "Ubuntu Mono", "Courier New", sans-serif;
+    line-height: 1.25em;
+}
+span.code.inline {
+    display: inline-block;
+}
+.match-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.input-group-container {
+    overflow: hidden;
+}
+.input-group-container > .input-group {
+    float: left;
+    width: 50%;
+    padding: 12px;
+    box-sizing: border-box;
+}
+.input-group-container > .input-group > textarea {
+    width: 98%;
+    height: 120px;
+}
+.result-container-group > .filters {
+    margin: 1.0em 1.0em 0 1.0em;
+    padding: 0.5em;
+    background: #fafafa;
+    border: solid 1px #eee;
+    border-radius: 3px;
+}
+.result-container-group > .filters > .filter-group {
+    padding-top: 4px;
+}
+.result-container {
+    float: left;
+    width: 50%;
+    padding: 12px;
+    box-sizing: border-box;
+}
+.result-container > .result-stats {
+    margin-bottom: 2.0em;
+    text-align: right;
+}
+.result-container > .result-stats > .result-stat {
+    padding: 0 0.75em;
+    text-transform: uppercase;
+    font-size: 11px;
+    border-right: solid 1px #b2b2b2;
+}
+.result-container > .result-stats > .result-stat:last-child {
+    padding-right: 0;
+    border-right: none;
+}
+.result-container > .result-stats > .result-stat > .label {
+    font-weight: bold;
+}
+.result-container > .result-stats > .result-chart {
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    height: 8px;
+    border-radius: 3px;
+}
+.result-container > .result-stats > .result-chart > span {
+    float: left;
+    height: 100%;
+}
+.result-container > table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.result-container > table tr > td.separator {
+    border-right: solid 2px #d7d7d7;
+    padding-right: 8px !important;
+}
+.result-container > table tr > td.separator + td {
+    padding-left: 8px !important;
+}
+.result-container > table > thead > tr > td {
+    border-bottom: solid 2px #d7d7d7;
+    border-spacing: 0;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 11px;
+}
+.result-container > table > tbody > tr > td {
+    padding: 4px 0;
+    font-family: "Ubuntu Mono", "Courier New", sans-serif;
+}
+.result-container > table > tbody > tr > td.checkbox {
+    text-align: center;
+}
+.result-container > table tr > td.labeled-cell {
+    padding: 0 8px;
+    font-family: Arial;
+}
+.result-container > table tr > td.labeled-cell.monospace {
+    font-family: "Ubuntu Mono", "Courier New", sans-serif;
+}
+.result-container > table > tbody > tr > td.colored-cell {
+    padding: 0;
+}
+.result-container > table > tbody > tr > td.colored-cell > span {
+    display: inline-block;
+    width: 100%;
+    height: 16px;
+    margin-top: 4px;
+    border-radius: 3px;
+}
+.result-container > table > tbody > tr > td.empty-message {
+    padding: 12px;
+    color: #999;
+    text-align: center;
+    font-style: italic;
+    font-family: Arial;
+}
+.result-container > table > tbody > tr {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.result-container > table > tbody > tr:nth-child(odd) {
+    background: #fff;
+}
+.result-container > table > tbody > tr:nth-child(even) {
+    background: #fafafa;
+}
+.result-container > table > tbody > tr:hover {
+    background: #e5f1f7;
+}
+.result-container-group.hide-match-candidates > .result-container:nth-child(2) {
+    display: none;
+}
+.result-container-group.hide-match-candidates > .result-container:nth-child(3) {
+    width: 100%;
+}
+.ui-widget-overlay.ui-front {
+    background: #999;
+    opacity: 0.8;
+}
+.ui-dialog {
+    overflow: hidden;
+    padding: 0 !important;
+    border-radius: 3px;
+}
+.ui-dialog > .ui-dialog-titlebar {
+    border-radius: 0;
+    font-size: 14px;
+}
+.ui-dialog > .ui-dialog-titlebar button {
+    background: none;
+    border: none;
+}
+.ui-dialog > .ui-dialog-titlebar button > span {
+    border: none;
+}
+#export-dialog > #export-value {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
