@@ -486,7 +486,10 @@ var bindListeners = function() {
     // create event listener for similar matches results row mouse events
     var $table = $("#similar-matches-results");
     $table.find("tbody").click("> tr > td", function(ev) {
+        var $target = $(ev.target);
         var $checkbox = $(ev.target).closest("tr").find("input[type='checkbox']");
+
+        if (_.isEqual($target.prop("tagName"), "INPUT")) return;
 
         if ($checkbox.prop("checked")) {
             $checkbox.removeAttr("checked").prop("checked", false);
